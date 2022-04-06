@@ -3,14 +3,13 @@ public class Main {
 //        Contact contact = new Contact("Pepe", "123456789", "C/Bonita", "pepe@gmail.com");
 //        System.out.println(contact);
 
-        Agenda agenda = new Agenda(new FileContactProvider());
+        Agenda agenda = new Agenda(new FileContactsProvider());
         System.out.println(agenda);
 
-        Contact contact = agenda.retrieve(0);
-        contact.setName("Juan Antonio");
-        agenda.update(contact);
+//        Contact contact = agenda.retrieve(0);
+//        contact.setName("Juan Antonio");
+//        agenda.update(contact);
 
-        System.out.println(agenda);
     }
 
 }
