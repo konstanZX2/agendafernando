@@ -4,6 +4,7 @@ public class Main {
 //        System.out.println(contact);
 
         Agenda agenda = new Agenda(new FileContactsProvider());
+        agenda.add(new Contact(1,"a","b","c","d"));
         System.out.println(agenda);
 
 //        Contact contact = agenda.retrieve(0);

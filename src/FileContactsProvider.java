@@ -1,8 +1,7 @@
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.LinkedList;
-import java.util.List;
+import java.io.*;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
 
 public class FileContactsProvider implements IContactsProvider {
 
@@ -25,14 +24,37 @@ public class FileContactsProvider implements IContactsProvider {
             System.out.println("IO Exception");
 
         } finally {
-            System.out.println("idk, pls die");
+            System.out.println("hace read / hace excepcion");
         }
         return contacts;
     }
 
+
+    public void saveContacts(List<Contact>contacts) {
+        PrintWriter printWriter;
+        contacts.add(new Contact(0, "Pepe", "123456789", "C/Bonita", "pepe@gmail.com"));
+        contacts.add(new Contact(1, "Maria", "123456789", "C/Bonita", "pepe@gmail.com"));
+        contacts.add(new Contact(2, "Jose", "123456789", "C/Bonita", "pepe@gmail.com"));
+        contacts.add(new Contact(3, "Cosmin", "123456789", "C/Bonita", "pepe@gmail.com"));
+
+        try {
+            printWriter = new PrintWriter(new FileWriter("resources/contacts.txt"));
+            for (Contact contact: contacts)
+                printWriter.println(contactStr(contact));
+            printWriter.close();
+
+        } catch (IOException e) {
+            System.out.println("IO Exception");
+        }
+    }
+
+    private String contactStr(Contact contact){
+        return String.join(";", String.valueOf(contact.getId()), contact.getName(), contact.getPhoneNumber(), contact.getAddress(), contact.getEmail());
+    }
+
     @Override
     public void add(Contact contact) {
-
+saveContacts(new LinkedList<>());
     }
 
     @Override
