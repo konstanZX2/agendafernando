@@ -11,6 +11,7 @@ public class PostgreSQLProvider implements IContactsProvider{
         String usuari = "geo";
         String password = "geo";
         try {
+
             con = DriverManager.getConnection(url, usuari, password);
         } catch (SQLException e) {
             e.printStackTrace();
