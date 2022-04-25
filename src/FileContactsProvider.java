@@ -1,7 +1,5 @@
 import java.io.*;
 import java.util.*;
-import java.util.function.*;
-import java.util.stream.*;
 
 public class FileContactsProvider implements IContactsProvider {
 
@@ -40,7 +38,7 @@ public class FileContactsProvider implements IContactsProvider {
         try {
             printWriter = new PrintWriter(new FileWriter("resources/contacts.txt"));
             for (Contact contact: contacts)
-                printWriter.println(contactStr(contact));
+                printWriter.println(contactsToString(contact));
             printWriter.close();
 
         } catch (IOException e) {
@@ -48,13 +46,14 @@ public class FileContactsProvider implements IContactsProvider {
         }
     }
 
-    private String contactStr(Contact contact){
+    private String contactsToString(Contact contact){
         return String.join(";", String.valueOf(contact.getId()), contact.getName(), contact.getPhoneNumber(), contact.getAddress(), contact.getEmail());
     }
 
     @Override
     public void add(Contact contact) {
-saveContacts(new LinkedList<>());
+        loadContacts();
+        saveContacts(new LinkedList<>());
     }
 
     @Override
