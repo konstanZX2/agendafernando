@@ -15,7 +15,7 @@ public class Agenda {
 
     private void refresh() {
         contacts = provider.loadContacts();
-        contacts.sort(Comparator.comparing(contact -> contact.getName()));
+        contacts.sort(Comparator.comparing(contact -> contact.getId()));
     }
 
     public void add(Contact contact) {

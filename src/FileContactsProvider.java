@@ -30,10 +30,6 @@ public class FileContactsProvider implements IContactsProvider {
 
     public void saveContacts(List<Contact>contacts) {
         PrintWriter printWriter;
-        contacts.add(new Contact(0, "Pepe", "123456789", "C/Bonita", "pepe@gmail.com"));
-        contacts.add(new Contact(1, "Maria", "123456789", "C/Bonita", "pepe@gmail.com"));
-        contacts.add(new Contact(2, "Jose", "123456789", "C/Bonita", "pepe@gmail.com"));
-        contacts.add(new Contact(3, "Cosmin", "123456789", "C/Bonita", "pepe@gmail.com"));
 
         try {
             printWriter = new PrintWriter(new FileWriter("resources/contacts.txt"));
@@ -52,18 +48,24 @@ public class FileContactsProvider implements IContactsProvider {
 
     @Override
     public void add(Contact contact) {
-        loadContacts();
-        saveContacts(new LinkedList<>());
+        List<Contact> contacts = loadContacts();
+        contacts.add(contact);
+        saveContacts(contacts);
     }
 
     @Override
     public void remove(Contact contact) {
-
+        List<Contact> contacts = loadContacts();
+        contacts.remove(contact);
+        saveContacts(contacts);
     }
 
     @Override
     public void update(Contact contact) {
-
+        List<Contact> contacts = loadContacts();
+        contacts.remove(contact);
+        contacts.add(contact);
+        saveContacts(contacts);
     }
 }
 
