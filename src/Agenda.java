@@ -8,27 +8,27 @@ public class Agenda {
     private List<Contact> contacts = new LinkedList<>();
     private IContactsProvider provider;
 
-    public Agenda(IContactsProvider provider) {
+    public Agenda(IContactsProvider provider) throws ExcepcionPropia {
         this.provider = provider;
         refresh();
     }
 
-    private void refresh() {
+    private void refresh() throws ExcepcionPropia {
         contacts = provider.loadContacts();
         contacts.sort(Comparator.comparing(contact -> contact.getId()));
     }
 
-    public void add(Contact contact) {
+    public void add(Contact contact) throws ExcepcionPropia {
         provider.add(contact);
         refresh();
     }
 
-    public void remove(Contact contact) {
+    public void remove(Contact contact) throws ExcepcionPropia {
         provider.remove(contact);
         refresh();
     }
 
-    public void update(Contact contact) {
+    public void update(Contact contact) throws ExcepcionPropia {
         provider.update(contact);
         refresh();
     }

@@ -3,7 +3,7 @@ import java.util.*;
 
 public class FileContactsProvider implements IContactsProvider {
 
-    public List<Contact> loadContacts() {
+    public List<Contact> loadContacts() throws ExcepcionPropia{
         List<Contact> contacts = new LinkedList<>();
         BufferedReader bufferedReader;
 
@@ -18,8 +18,8 @@ public class FileContactsProvider implements IContactsProvider {
             }
             bufferedReader.close();
 
-        } catch (IOException exception) {
-            System.out.println("IO Exception");
+        } catch (IOException excepcionPropia) {
+            throw new ExcepcionPropia();
 
         } finally {
             System.out.println("hace read / hace excepcion");
@@ -47,21 +47,21 @@ public class FileContactsProvider implements IContactsProvider {
     }
 
     @Override
-    public void add(Contact contact) {
+    public void add(Contact contact) throws ExcepcionPropia {
         List<Contact> contacts = loadContacts();
         contacts.add(contact);
         saveContacts(contacts);
     }
 
     @Override
-    public void remove(Contact contact) {
+    public void remove(Contact contact) throws ExcepcionPropia {
         List<Contact> contacts = loadContacts();
         contacts.remove(contact);
         saveContacts(contacts);
     }
 
     @Override
-    public void update(Contact contact) {
+    public void update(Contact contact) throws ExcepcionPropia {
         List<Contact> contacts = loadContacts();
         contacts.remove(contact);
         contacts.add(contact);

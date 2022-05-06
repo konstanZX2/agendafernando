@@ -1,15 +1,19 @@
+import java.io.IOException;
+
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ExcepcionPropia {
 //        Contact contact = new Contact("Pepe", "123456789", "C/Bonita", "pepe@gmail.com");
 //        System.out.println(contact);
 
-        Agenda agenda = new Agenda(new FileContactsProvider());
+        try{Agenda agenda = new Agenda(new FileContactsProvider());
         agenda.add(new Contact(4,"a","b","c","d"));
         Contact contact = agenda.retrieve(4);
         //agenda.remove(contact);
         contact.setName("tupac");
         agenda.update(contact);
-        System.out.println(agenda);
+        System.out.println(agenda);}catch(ExcepcionPropia excepcionPropia){
+            System.out.println("El archivo o no existe o has puesto mal la ruta/nombre");
+        }
 
 //        Contact contact = agenda.retrieve(0);
 //        contact.setName("Juan Antonio");
