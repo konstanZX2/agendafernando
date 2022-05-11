@@ -6,12 +6,13 @@ public class Main {
 //        System.out.println(contact);
 
         try{Agenda agenda = new Agenda(new FileContactsProvider());
-        agenda.add(new Contact(4,"a","b","c","d"));
+            Agenda agenda1 = new Agenda(new SerializableContactProvider());
+        agenda1.add(new Contact(4,"a","b","c","d"));
         Contact contact = agenda.retrieve(4);
         //agenda.remove(contact);
         contact.setName("tupac");
         agenda.update(contact);
-        System.out.println(agenda);}catch(ExcepcionPropia excepcionPropia){
+        System.out.println(agenda1);}catch(ExcepcionPropia excepcionPropia){
             System.out.println("El archivo o no existe o has puesto mal la ruta/nombre");
         }
 
