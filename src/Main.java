@@ -6,7 +6,7 @@ public class Main {
 //        System.out.println(contact);
 
         try{Agenda agenda = new Agenda(new FileContactsProvider());
-            Agenda agenda1 = new Agenda(new SerializableContactProvider());
+            Agenda agenda1 = new Agenda(new JSerializableON_contactProvider());
         agenda1.add(new Contact(4,"a","b","c","d"));
         Contact contact = agenda.retrieve(4);
         //agenda.remove(contact);
